@@ -41,6 +41,18 @@ class RegisterController extends Controller
             'password' => Hash::make( $request->password)
         ]);
 
+        // Autenticar usuario, debuelve un booleano si se ha autenticado el email y el password.
+        // Si devuelve false no deja ir al muro por que ese usuario no esta autenticado.
+
+        auth()->attempt([
+            'email' => $request->email,
+            'password' => $request->password
+        ]);
+
+        // Otra forma de autenticar
+
+        //auth()->attempt($request->only('email', 'password'));
+
         // Redireccionar al usuario cuando ha creado una cuenta.
 
         return redirect()->route('post.index');
