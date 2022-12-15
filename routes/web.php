@@ -31,7 +31,9 @@ Route::get('/login', [LoginController::class ,'index'])->name('login');
 Route::post('/login', [LoginController::class ,'store']);
 Route::post('/logout', [LogoutController::class ,'store'])->name('logout');
 
-Route::get('/muro', [PostController::class ,'index'])->name('post.index');
+// Al aplicar llaver al nombre de un módelo, como en este caso users. Aplicamos RautModelBinding.
+// Así Laravel hace automatícamente el trabajao de leer el parametro de la url y despues consultar el módelo.
+Route::get('/{user:username}', [PostController::class ,'index'])->name('post.index');
 
 
 
